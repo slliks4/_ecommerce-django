@@ -1,0 +1,15 @@
+### Customer Account and Guest Account Purchases
+
+#### Overview
+In the eCommerce web application, the primary objective is to enable both customer accounts and guest accounts to make purchases seamlessly. The purchase process necessitates the provision of a user's name, irrespective of whether the user is anonymous or verified. The main distinction between the two types of accounts lies in the handling of user information and the retention of past user data.
+
+#### Customer Class Creation
+To facilitate the purchasing process, the application introduces a `Customer` class, which encompasses two distinct categories: `Guest` and `Verified` users. The fundamental disparity between these two classes is that every 30 days, guest accounts are automatically cleared, requiring users to restart the purchasing process from the beginning. On the other hand, verified users enjoy a more streamlined experience, as they are not required to input their name each time they initiate a purchase.
+
+#### Cart and Purchase Workflow
+The purchasing process in the application is initiated by selecting items and adding them to the cart. Within the cart, users have the flexibility to modify various aspects such as item quantity. Notably, the contents of the cart are directly associated with the final checkout, thus assuming that all items in the cart are intended for purchase.
+
+#### User Identification and Data Handling
+When a user clicks the "Add to Cart" button, a pop-up window prompts the user to either sign up or continue as a guest. Opting to sign up leads to a form where the user provides necessary details, upon which an automatic user ID is generated upon submission. In contrast, choosing to continue as a guest results in all items being added to the cart, with a user ID automatically generated and stored in the local storage of the device.
+
+For subsequent visits, the purchase page automatically populates user details. Anonymous users, however, are required to manually input their name, which is then saved in the database and associated with the respective user ID. The application retrieves user information by cross-referencing the user ID stored in the local storage with the IDs in the database. If the user ID does not exist, a new ID is generated. In cases where the query yields no results, the application generates a new user ID, replacing the one stored in the local storage.
